@@ -18,6 +18,7 @@ CONF_MOVE_FILES: Final = "move_files"
 CONF_RECITER_ID: Final = "reciter_id"
 CONF_MOSHAF_ID: Final = "moshaf_id"
 CONF_SURAHS: Final = "surahs"
+CONF_ALL_SURAHS: Final = "all_surahs"  # form-only switch, never stored
 CONF_DELETE_FILES: Final = "delete_files"
 SUBENTRY_TYPE_SELECTION: Final = "selection"
 

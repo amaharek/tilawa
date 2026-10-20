@@ -465,5 +465,8 @@ a GitHub release from a `v*` tag after checking it matches `manifest.json`.
   connectivity sensor is at most a day stale instead of a week.
 - `sync.py` exposes `async_head_many` so the "re-download changed files" option can HEAD
   already-indexed files before planning.
+- 0.1.2: the version and reconfigure steps carry a **Download all surahs** switch (on by
+  default); the range field is used only when it is off. The switch is form-only and
+  not stored; a selection without a range still means "everything available".
 - Phase A shipped 65 tests at 83 % line coverage of the integration; Phase B (full
   error paths, >95 %, HA version matrix) starts after the manual Home Assistant test.

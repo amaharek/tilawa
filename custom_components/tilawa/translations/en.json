@@ -29,13 +29,14 @@
       },
       "version": {
         "title": "Choose a version",
-        "description": "Versions of {reciter}. Leave the surah range empty to download everything available.",
+        "description": "Versions of {reciter}. The number in brackets is how many surahs a version offers. All of them are downloaded unless you switch off \"Download all surahs\" and enter a range.",
         "data": {
           "moshaf_id": "Version",
-          "surahs": "Surah range (optional)"
+          "all_surahs": "Download all surahs",
+          "surahs": "Only these surahs"
         },
         "data_description": {
-          "surahs": "For example 78-114 for Juz' Amma, or 1, 36, 55-56."
+          "surahs": "Used when the switch above is off. For example 78-114 for Juz' Amma, or 1, 36, 55-56."
         }
       },
       "reconfigure": {
@@ -54,7 +55,8 @@
       "path_not_allowed": "This path is outside your media folders. Add it to allowlist_external_dirs or choose a media folder.",
       "unknown_moshaf": "This version does not belong to the selected reciter.",
       "invalid_surahs": "Use surah numbers between 1 and 114, for example 78-114 or 1, 36, 55-56.",
-      "surahs_not_available": "This version offers none of these surahs."
+      "surahs_not_available": "This version offers none of these surahs.",
+      "surahs_required": "Enter a surah range, or switch \"Download all surahs\" back on."
     },
     "abort": {
       "already_configured": "Tilawa is already configured.",
@@ -78,27 +80,33 @@
         },
         "version": {
           "title": "Choose a version",
-          "description": "Versions of {reciter}. Leave the surah range empty to download everything available.",
+          "description": "Versions of {reciter}. The number in brackets is how many surahs a version offers. All of them are downloaded unless you switch off \"Download all surahs\" and enter a range.",
           "data": {
             "moshaf_id": "Version",
-            "surahs": "Surah range (optional)"
+            "all_surahs": "Download all surahs",
+            "surahs": "Only these surahs"
           },
           "data_description": {
-            "surahs": "For example 78-114 for Juz' Amma, or 1, 36, 55-56."
+            "surahs": "Used when the switch above is off. For example 78-114 for Juz' Amma, or 1, 36, 55-56."
           }
         },
         "reconfigure": {
           "title": "Change surah range",
-          "description": "{selection}. Available surahs: {available}. Leave empty for all.",
+          "description": "{selection}. Available surahs: {available}.",
           "data": {
-            "surahs": "Surah range (optional)"
+            "all_surahs": "Download all surahs",
+            "surahs": "Only these surahs"
+          },
+          "data_description": {
+            "surahs": "Used when the switch above is off. For example 78-114 for Juz' Amma, or 1, 36, 55-56."
           }
         }
       },
       "error": {
         "unknown_moshaf": "This version does not belong to the selected reciter.",
         "invalid_surahs": "Use surah numbers between 1 and 114, for example 78-114 or 1, 36, 55-56.",
-        "surahs_not_available": "This version offers none of these surahs."
+        "surahs_not_available": "This version offers none of these surahs.",
+        "surahs_required": "Enter a surah range, or switch \"Download all surahs\" back on."
       },
       "abort": {
         "already_configured": "This reciter version is already in your library.",

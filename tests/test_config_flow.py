@@ -9,6 +9,7 @@ import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tilawa.const import (
+    CONF_ALL_SURAHS,
     CONF_LIBRARY_PATH,
     CONF_MOSHAF_ID,
     CONF_RECITER_ID,
@@ -66,7 +67,8 @@ async def test_full_flow_creates_entry_with_first_selection(
     assert result["step_id"] == "version"
     assert result["description_placeholders"] == {"reciter": "محمود خليل الحصري"}
     result = await hass.config_entries.flow.async_configure(
-        result["flow_id"], {CONF_MOSHAF_ID: "118", CONF_SURAHS: "78-114"}
+        result["flow_id"],
+        {CONF_MOSHAF_ID: "118", CONF_ALL_SURAHS: False, CONF_SURAHS: "78-114"},
     )
     await hass.async_block_till_done()
 
@@ -134,11 +136,17 @@ async def test_flow_errors(
         result["flow_id"], {CONF_RECITER_ID: "118"}
     )
     result = await hass.config_entries.flow.async_configure(
-        result["flow_id"], {CONF_MOSHAF_ID: "118", CONF_SURAHS: "200"}
+        result["flow_id"],
+        {CONF_MOSHAF_ID: "118", CONF_ALL_SURAHS: False, CONF_SURAHS: "200"},
     )
     assert result["errors"] == {CONF_SURAHS: "invalid_surahs"}
     result = await hass.config_entries.flow.async_configure(
-        result["flow_id"], {CONF_MOSHAF_ID: "118", CONF_SURAHS: ""}
+        result["flow_id"],
+        {CONF_MOSHAF_ID: "118", CONF_ALL_SURAHS: False, CONF_SURAHS: ""},
+    )
+    assert result["errors"] == {CONF_SURAHS: "surahs_required"}
+    result = await hass.config_entries.flow.async_configure(
+        result["flow_id"], {CONF_MOSHAF_ID: "118", CONF_ALL_SURAHS: True}
     )
     assert result["type"] is FlowResultType.CREATE_ENTRY
     subentry = next(iter(result["result"].subentries.values()))
@@ -211,7 +219,7 @@ async def test_subentry_reconfigure_changes_range(
         assert result["step_id"] == "reconfigure"
         assert result["description_placeholders"]["available"] == "1-114"
         result = await hass.config_entries.subentries.async_configure(
-            result["flow_id"], {CONF_SURAHS: "1, 36"}
+            result["flow_id"], {CONF_ALL_SURAHS: False, CONF_SURAHS: "1, 36"}
         )
         await hass.async_block_till_done()
     assert result["type"] is FlowResultType.ABORT

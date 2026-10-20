@@ -35,6 +35,7 @@ import voluptuous as vol
 from .const import (
     AUTO_SYNC_OPTIONS,
     BANDWIDTH_LIMIT_MAX,
+    CONF_ALL_SURAHS,
     CONF_LIBRARY_PATH,
     CONF_MOSHAF_ID,
     CONF_MOVE_FILES,
@@ -70,6 +71,7 @@ from .lib.models import (
     TITLE_FORMATS,
     Catalogue,
     Language,
+    Moshaf,
     Reciter,
     Selection,
 )
@@ -196,9 +198,22 @@ def _version_schema(
             vol.Required(CONF_MOSHAF_ID): SelectSelector(
                 SelectSelectorConfig(options=options, mode=SelectSelectorMode.LIST)
             ),
+            vol.Required(CONF_ALL_SURAHS, default=True): BooleanSelector(),
             vol.Optional(CONF_SURAHS): TextSelector(),
         }
     )
+
+
+def _parse_surah_input(
+    user_input: Mapping[str, Any], moshaf: Moshaf
+) -> tuple[frozenset[int] | None, str | None]:
+    """Return the chosen surahs: ``None`` for everything, else the validated range."""
+    if user_input.get(CONF_ALL_SURAHS, True):
+        return None, None
+    text = (user_input.get(CONF_SURAHS) or "").strip()
+    if not text:
+        return None, "surahs_required"
+    return validate_surahs(text, moshaf)
 
 
 def _build_selection(
@@ -207,7 +222,7 @@ def _build_selection(
     moshaf = catalogue.moshafs.get(int(user_input[CONF_MOSHAF_ID]))
     if moshaf is None or moshaf.reciter_id != reciter_id:
         return None, {"base": "unknown_moshaf"}
-    surahs, error = validate_surahs(user_input.get(CONF_SURAHS), moshaf)
+    surahs, error = _parse_surah_input(user_input, moshaf)
     if error:
         return None, {CONF_SURAHS: error}
     return Selection(reciter_id, moshaf.id, surahs), {}
@@ -450,7 +465,7 @@ class SelectionSubentryFlow(ConfigSubentryFlow):
             return self.async_abort(reason="selection_missing_upstream")
         errors: dict[str, str] = {}
         if user_input is not None:
-            surahs, error = validate_surahs(user_input.get(CONF_SURAHS), moshaf)
+            surahs, error = _parse_surah_input(user_input, moshaf)
             if error:
                 errors[CONF_SURAHS] = error
             else:
@@ -464,11 +479,17 @@ class SelectionSubentryFlow(ConfigSubentryFlow):
         return self.async_show_form(
             step_id="reconfigure",
             data_schema=self.add_suggested_values_to_schema(
-                vol.Schema({vol.Optional(CONF_SURAHS): TextSelector()}),
+                vol.Schema(
+                    {
+                        vol.Required(CONF_ALL_SURAHS, default=True): BooleanSelector(),
+                        vol.Optional(CONF_SURAHS): TextSelector(),
+                    }
+                ),
                 {
+                    CONF_ALL_SURAHS: selection.surahs is None,
                     CONF_SURAHS: format_range(selection.surahs)
                     if selection.surahs
-                    else ""
+                    else "",
                 },
             ),
             errors=errors,
