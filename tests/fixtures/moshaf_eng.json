@@ -1,0 +1,166 @@
+{
+  "riwayat": [
+    {
+      "id": 11,
+      "moshaf_type": 1,
+      "moshaf_id": 1,
+      "name": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "id": 12,
+      "moshaf_type": 1,
+      "moshaf_id": 2,
+      "name": "Rewayat Hafs A'n Assem - Almusshaf Al Mojawwad"
+    },
+    {
+      "id": 13,
+      "moshaf_type": 1,
+      "moshaf_id": 3,
+      "name": "Rewayat Hafs A'n Assem - Almusshaf Al Mo'lim"
+    },
+    {
+      "id": 14,
+      "moshaf_type": 1,
+      "moshaf_id": 4,
+      "name": "Rewayat Hafs A'n Assem - Featured Recitation"
+    },
+    {
+      "id": 120,
+      "moshaf_type": 1,
+      "moshaf_id": 20,
+      "name": "Rewayat Hafs A'n Assem - Recorded in 1387 AH (1967 CE)"
+    },
+    {
+      "id": 21,
+      "moshaf_type": 2,
+      "moshaf_id": 1,
+      "name": "Rewayat Warsh A'n Nafi' - Murattal"
+    },
+    {
+      "id": 31,
+      "moshaf_type": 3,
+      "moshaf_id": 1,
+      "name": "Rewayat Khalaf A'n Hamzah - Murattal"
+    },
+    {
+      "id": 41,
+      "moshaf_type": 4,
+      "moshaf_id": 1,
+      "name": "Rewayat Albizi A'n Ibn Katheer - Murattal"
+    },
+    {
+      "id": 51,
+      "moshaf_type": 5,
+      "moshaf_id": 1,
+      "name": "Rewayat Qalon A'n Nafi' - Murattal"
+    },
+    {
+      "id": 52,
+      "moshaf_type": 5,
+      "moshaf_id": 2,
+      "name": "Rewayat Qalon A'n Nafi' - Almusshaf Al Mojawwad"
+    },
+    {
+      "id": 61,
+      "moshaf_type": 6,
+      "moshaf_id": 1,
+      "name": "Rewayat Qunbol A'n Ibn Katheer - Murattal"
+    },
+    {
+      "id": 71,
+      "moshaf_type": 7,
+      "moshaf_id": 1,
+      "name": "Rewayat Assosi A'n Abi Amr - Murattal"
+    },
+    {
+      "id": 81,
+      "moshaf_type": 8,
+      "moshaf_id": 1,
+      "name": "Rewayat Qalon A'n Nafi' Men Tariq Abi Nasheet - Murattal"
+    },
+    {
+      "id": 91,
+      "moshaf_type": 9,
+      "moshaf_id": 1,
+      "name": "Rewayat Rowis and Rawh A'n Yakoob Al Hadrami  - Murattal"
+    },
+    {
+      "id": 101,
+      "moshaf_type": 10,
+      "moshaf_id": 1,
+      "name": "Rewayat Warsh A'n Nafi' Men  Tariq Abi Baker Alasbahani - Murattal"
+    },
+    {
+      "id": 111,
+      "moshaf_type": 11,
+      "moshaf_id": 1,
+      "name": "Rewayat Albizi and Qunbol A'n Ibn Katheer - Murattal"
+    },
+    {
+      "id": 121,
+      "moshaf_type": 12,
+      "moshaf_id": 1,
+      "name": "Rewayat AlDorai A'n Al-Kisa'ai - Murattal"
+    },
+    {
+      "id": 131,
+      "moshaf_type": 13,
+      "moshaf_id": 1,
+      "name": "Rewayat Aldori A'n Abi Amr - Murattal"
+    },
+    {
+      "id": 132,
+      "moshaf_type": 13,
+      "moshaf_id": 2,
+      "name": "Rewayat Aldori A'n Abi Amr - Almusshaf Al Mojawwad"
+    },
+    {
+      "id": 151,
+      "moshaf_type": 15,
+      "moshaf_id": 1,
+      "name": "Sho'bah A'n Asim - Murattal"
+    },
+    {
+      "id": 152,
+      "moshaf_type": 15,
+      "moshaf_id": 2,
+      "name": "Sho'bah A'n Asim - Almusshaf Al Mojawwad"
+    },
+    {
+      "id": 161,
+      "moshaf_type": 16,
+      "moshaf_id": 1,
+      "name": "Ibn Thakwan A'n Ibn Amer - Murattal"
+    },
+    {
+      "id": 181,
+      "moshaf_type": 18,
+      "moshaf_id": 1,
+      "name": "Rewayat Warsh A'n Nafi' Men Tariq Alazraq - Murattal"
+    },
+    {
+      "id": 191,
+      "moshaf_type": 19,
+      "moshaf_id": 1,
+      "name": "Hesham A'n Abi A'mer - Murattal"
+    },
+    {
+      "id": 201,
+      "moshaf_type": 20,
+      "moshaf_id": 1,
+      "name": "Ibn Jammaz A'n Abi Ja'far - Murattal"
+    },
+    {
+      "id": 213,
+      "moshaf_type": 21,
+      "moshaf_id": 3,
+      "name": "Almusshaf Al Mo'lim - Almusshaf Al Mo'lim"
+    },
+    {
+      "id": 222,
+      "moshaf_type": 22,
+      "moshaf_id": 2,
+      "name": "Almusshaf Al Mojawwad - Almusshaf Al Mojawwad"
+    }
+  ]
+}

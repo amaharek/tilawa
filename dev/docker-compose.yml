@@ -1,0 +1,15 @@
+# Music Assistant server for local testing, sharing dev/media with the HA dev instance.
+#   docker compose -f dev/docker-compose.yml up -d
+# Then open http://localhost:8095, add the "Filesystem (local disk)" provider at /media,
+# and add the Music Assistant integration in Home Assistant with URL http://localhost:8095.
+services:
+  music-assistant:
+    image: ghcr.io/music-assistant/server:latest
+    container_name: tilawa-dev-mass
+    ports:
+      - "8095:8095"
+      - "8097:8097"
+    volumes:
+      - ./mass-data:/data
+      - ./media:/media
+    restart: unless-stopped

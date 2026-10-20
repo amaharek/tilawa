@@ -1,0 +1,60 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "api": {
+        "default": "mdi:cloud-check-outline",
+        "state": {
+          "off": "mdi:cloud-off-outline"
+        }
+      }
+    },
+    "button": {
+      "sync_now": {
+        "default": "mdi:cloud-download"
+      },
+      "cancel_sync": {
+        "default": "mdi:cancel"
+      }
+    },
+    "sensor": {
+      "sync_status": {
+        "default": "mdi:book-open-page-variant",
+        "state": {
+          "syncing": "mdi:cloud-download",
+          "retagging": "mdi:tag-multiple",
+          "moving": "mdi:folder-move",
+          "error": "mdi:alert-circle"
+        }
+      },
+      "sync_progress": {
+        "default": "mdi:progress-download"
+      },
+      "files": {
+        "default": "mdi:music-box-multiple"
+      },
+      "library_size": {
+        "default": "mdi:harddisk"
+      },
+      "last_sync": {
+        "default": "mdi:clock-check-outline"
+      },
+      "reciters": {
+        "default": "mdi:account-voice"
+      }
+    }
+  },
+  "services": {
+    "sync": {
+      "service": "mdi:cloud-download"
+    },
+    "add_selection": {
+      "service": "mdi:account-plus"
+    },
+    "remove_selection": {
+      "service": "mdi:account-minus"
+    },
+    "retag": {
+      "service": "mdi:tag-multiple"
+    }
+  }
+}

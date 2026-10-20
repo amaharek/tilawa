@@ -1,0 +1,22 @@
+# Python / uv
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Local Home Assistant dev instance (scripts/develop)
+dev/config/
+dev/media/
+dev/mass-data/
+dev/.venv/
+
+# Downloads in progress
+*.part
+
+# OS
+.DS_Store

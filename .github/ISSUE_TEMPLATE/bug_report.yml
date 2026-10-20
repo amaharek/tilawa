@@ -1,0 +1,30 @@
+name: Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Home Assistant, Tilawa and Music Assistant versions, and the install type (OS, Supervised, Container, Core).
+      placeholder: HA 2026.10.2, Tilawa 0.1.0, MA 2.7.1, HA OS
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Settings → Devices & services → Tilawa → ⋮ → Download diagnostics. Attach the file or paste it here.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant lines from Settings → System → Logs (enable debug logging for the integration first).
+      render: text

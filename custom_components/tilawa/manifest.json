@@ -1,0 +1,15 @@
+{
+  "domain": "tilawa",
+  "name": "Tilawa",
+  "codeowners": ["@amaharek"],
+  "config_flow": true,
+  "dependencies": ["repairs"],
+  "documentation": "https://github.com/amaharek/tilawa",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/amaharek/tilawa/issues",
+  "loggers": ["mutagen"],
+  "requirements": ["mutagen>=1.47.0,<2"],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}

@@ -1,0 +1,332 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Library folder",
+        "description": "Where recitations are stored. Music Assistant must have a Filesystem (local disk) source pointing at this folder. Free space on this volume: {free_space}.",
+        "data": {
+          "library_path": "Library folder"
+        },
+        "data_description": {
+          "library_path": "An absolute path inside a media folder or an allowed external directory."
+        }
+      },
+      "naming": {
+        "title": "Names and titles",
+        "description": "How artists, albums and tracks are named in the tags and on disk.",
+        "data": {
+          "names_language": "Reciter and album names",
+          "title_format": "Track title"
+        }
+      },
+      "reciter": {
+        "title": "Choose a reciter",
+        "description": "You can add more reciters later from the integration page.",
+        "data": {
+          "reciter_id": "Reciter"
+        }
+      },
+      "version": {
+        "title": "Choose a version",
+        "description": "Versions of {reciter}. Leave the surah range empty to download everything available.",
+        "data": {
+          "moshaf_id": "Version",
+          "surahs": "Surah range (optional)"
+        },
+        "data_description": {
+          "surahs": "For example 78-114 for Juz' Amma, or 1, 36, 55-56."
+        }
+      },
+      "reconfigure": {
+        "title": "Change library folder",
+        "description": "Files already downloaded can be moved to the new folder.",
+        "data": {
+          "library_path": "Library folder",
+          "move_files": "Move existing files"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach mp3quran.net. Check your internet connection and try again.",
+      "invalid_path": "Enter an absolute path.",
+      "not_writable": "The folder cannot be created or written to.",
+      "path_not_allowed": "This path is outside your media folders. Add it to allowlist_external_dirs or choose a media folder.",
+      "unknown_moshaf": "This version does not belong to the selected reciter.",
+      "invalid_surahs": "Use surah numbers between 1 and 114, for example 78-114 or 1, 36, 55-56.",
+      "surahs_not_available": "This version offers none of these surahs."
+    },
+    "abort": {
+      "already_configured": "Tilawa is already configured.",
+      "single_instance_allowed": "Only one Tilawa library can be configured.",
+      "reconfigure_successful": "The library folder was updated."
+    }
+  },
+  "config_subentries": {
+    "selection": {
+      "initiate_flow": {
+        "user": "Add reciter",
+        "reconfigure": "Change surah range"
+      },
+      "entry_type": "Reciter version",
+      "step": {
+        "user": {
+          "title": "Choose a reciter",
+          "data": {
+            "reciter_id": "Reciter"
+          }
+        },
+        "version": {
+          "title": "Choose a version",
+          "description": "Versions of {reciter}. Leave the surah range empty to download everything available.",
+          "data": {
+            "moshaf_id": "Version",
+            "surahs": "Surah range (optional)"
+          },
+          "data_description": {
+            "surahs": "For example 78-114 for Juz' Amma, or 1, 36, 55-56."
+          }
+        },
+        "reconfigure": {
+          "title": "Change surah range",
+          "description": "{selection}. Available surahs: {available}. Leave empty for all.",
+          "data": {
+            "surahs": "Surah range (optional)"
+          }
+        }
+      },
+      "error": {
+        "unknown_moshaf": "This version does not belong to the selected reciter.",
+        "invalid_surahs": "Use surah numbers between 1 and 114, for example 78-114 or 1, 36, 55-56.",
+        "surahs_not_available": "This version offers none of these surahs."
+      },
+      "abort": {
+        "already_configured": "This reciter version is already in your library.",
+        "entry_not_loaded": "Tilawa is not loaded. Reload the integration and try again.",
+        "selection_missing_upstream": "This version is no longer offered by mp3quran.net.",
+        "reconfigure_successful": "The surah range was updated."
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tilawa options",
+        "description": "Changing names or titles retags and renames the existing files. Music Assistant treats renamed files as new items.",
+        "data": {
+          "names_language": "Reciter and album names",
+          "title_format": "Track title",
+          "max_parallel": "Parallel downloads",
+          "bandwidth_limit_kbps": "Bandwidth limit",
+          "auto_sync": "Automatic sync",
+          "redownload_changed": "Re-download files that changed upstream"
+        },
+        "data_description": {
+          "bandwidth_limit_kbps": "0 means unlimited.",
+          "auto_sync": "Runs at 03:00 local time; weekly syncs run on Mondays.",
+          "redownload_changed": "Checks every file against the server on each sync and fetches it again when mp3quran.net replaced it."
+        }
+      }
+    }
+  },
+  "selector": {
+    "names_language": {
+      "options": {
+        "ar": "Arabic",
+        "eng": "English"
+      }
+    },
+    "title_format": {
+      "options": {
+        "number_ar": "Number and Arabic name (018 الكهف)",
+        "number_en": "Number and English name (018 Al-Kahf)",
+        "number_both": "Number, Arabic and English (018 الكهف – Al-Kahf)"
+      }
+    },
+    "auto_sync": {
+      "options": {
+        "off": "Off",
+        "daily": "Daily",
+        "weekly": "Weekly"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "api": {
+        "name": "mp3quran.net reachable"
+      }
+    },
+    "button": {
+      "sync_now": {
+        "name": "Sync now"
+      },
+      "cancel_sync": {
+        "name": "Cancel sync"
+      }
+    },
+    "sensor": {
+      "sync_status": {
+        "name": "Sync status",
+        "state": {
+          "idle": "Idle",
+          "syncing": "Syncing",
+          "retagging": "Retagging",
+          "moving": "Moving files",
+          "error": "Error"
+        },
+        "state_attributes": {
+          "job": {
+            "name": "Job"
+          },
+          "current": {
+            "name": "Current track"
+          },
+          "done": {
+            "name": "Processed"
+          },
+          "total": {
+            "name": "Total"
+          },
+          "failed": {
+            "name": "Failed"
+          },
+          "error": {
+            "name": "Last error"
+          }
+        }
+      },
+      "sync_progress": {
+        "name": "Sync progress"
+      },
+      "files": {
+        "name": "Files"
+      },
+      "library_size": {
+        "name": "Library size"
+      },
+      "last_sync": {
+        "name": "Last successful sync"
+      },
+      "reciters": {
+        "name": "Reciters"
+      }
+    }
+  },
+  "services": {
+    "sync": {
+      "name": "Sync",
+      "description": "Downloads missing surahs for all selections, or for one reciter version.",
+      "fields": {
+        "reciter_id": {
+          "name": "Reciter ID",
+          "description": "mp3quran reciter id. Give both ids to sync one version only."
+        },
+        "moshaf_id": {
+          "name": "Version ID",
+          "description": "mp3quran moshaf id."
+        }
+      }
+    },
+    "add_selection": {
+      "name": "Add selection",
+      "description": "Adds a reciter version to the library and starts downloading it.",
+      "fields": {
+        "reciter_id": {
+          "name": "Reciter ID",
+          "description": "mp3quran reciter id."
+        },
+        "moshaf_id": {
+          "name": "Version ID",
+          "description": "mp3quran moshaf id of that reciter."
+        },
+        "surahs": {
+          "name": "Surahs",
+          "description": "Optional range such as 78-114. Empty downloads everything available."
+        }
+      }
+    },
+    "remove_selection": {
+      "name": "Remove selection",
+      "description": "Removes a reciter version from the library, optionally deleting its files.",
+      "fields": {
+        "reciter_id": {
+          "name": "Reciter ID",
+          "description": "mp3quran reciter id."
+        },
+        "moshaf_id": {
+          "name": "Version ID",
+          "description": "mp3quran moshaf id."
+        },
+        "delete_files": {
+          "name": "Delete files",
+          "description": "Also delete the downloaded files of this version."
+        }
+      }
+    },
+    "retag": {
+      "name": "Retag",
+      "description": "Rewrites tags and file names from the current naming options without downloading."
+    }
+  },
+  "exceptions": {
+    "not_loaded": {
+      "message": "Tilawa is not set up or not loaded."
+    },
+    "busy": {
+      "message": "A sync is running. Cancel it or wait for it to finish."
+    },
+    "unknown_selection": {
+      "message": "No selection {selection} exists."
+    },
+    "unknown_reciter": {
+      "message": "No reciter with id {reciter_id} exists in the mp3quran catalogue."
+    },
+    "unknown_moshaf": {
+      "message": "Version {moshaf_id} does not belong to {reciter}."
+    },
+    "invalid_surahs": {
+      "message": "{surahs} is not a valid surah range. Use numbers between 1 and 114, for example 78-114."
+    },
+    "surahs_not_available": {
+      "message": "This version offers none of the surahs in {surahs}."
+    },
+    "already_selected": {
+      "message": "Selection {selection} is already in the library."
+    }
+  },
+  "issues": {
+    "library_not_writable": {
+      "title": "Library folder is not writable",
+      "description": "Tilawa cannot write to {path}. Check that the folder exists and that Home Assistant may write to it, then run a sync again."
+    },
+    "low_disk_space": {
+      "title": "Not enough disk space for the sync",
+      "description": "The sync needs about {needed} but only {free} is free. Free up space or remove a selection, then run a sync again."
+    },
+    "selection_missing_upstream": {
+      "title": "A selected version is no longer available",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Remove unavailable selection",
+            "description": "mp3quran.net no longer lists {selection}. Remove it from the library? Downloaded files are kept."
+          }
+        }
+      }
+    },
+    "orphaned_files": {
+      "title": "Files of a removed selection remain",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Removed selection",
+            "description": "{selection} was removed but {count} downloaded files are still on disk. Keep them, or delete them now.",
+            "data": {
+              "delete_files": "Delete the files"
+            }
+          }
+        }
+      }
+    }
+  }
+}

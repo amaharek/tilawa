@@ -1,0 +1,22 @@
+# Template for the local development instance started by scripts/develop.
+# __MEDIA__ is replaced with the absolute path of dev/media on first run.
+homeassistant:
+  name: Tilawa Dev
+  unit_system: metric
+  time_zone: UTC
+  media_dirs:
+    local: __MEDIA__
+  allowlist_external_dirs:
+    - __MEDIA__
+
+frontend:
+config:
+history:
+logbook:
+repairs:
+my:
+
+logger:
+  default: info
+  logs:
+    custom_components.tilawa: debug

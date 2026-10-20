@@ -1,0 +1,86 @@
+# Informational tracking against the Home Assistant Integration Quality Scale.
+# Custom integrations have no official tier; hassfest does not read this file.
+rules:
+  # Bronze
+  action-setup: done
+  appropriate-polling:
+    status: done
+    comment: The catalogue is checked daily and fetched weekly; nothing else polls.
+  brands:
+    status: done
+    comment: Local brand/ folder (Home Assistant 2026.3+).
+  common-modules: done
+  config-flow: done
+  config-flow-test-coverage:
+    status: todo
+    comment: Happy path and main error paths are covered; full coverage is Phase B.
+  dependency-transparency: done
+  docs-actions: done
+  docs-high-level-description: done
+  docs-installation-instructions: done
+  docs-removal-instructions: done
+  entity-event-setup: done
+  entity-unique-id: done
+  has-entity-name: done
+  runtime-data: done
+  test-before-configure: done
+  test-before-setup: done
+  unique-config-entry: done
+
+  # Silver
+  action-exceptions: done
+  config-entry-unloading: done
+  docs-configuration-parameters: done
+  docs-installation-parameters: done
+  entity-unavailable:
+    status: done
+    comment: Library data is local; API reachability is a dedicated connectivity sensor.
+  integration-owner: done
+  log-when-unavailable: done
+  parallel-updates: done
+  reauthentication-flow:
+    status: exempt
+    comment: The API needs no authentication.
+  test-coverage:
+    status: todo
+    comment: 83 percent after Phase A; above 95 percent is a Phase B goal.
+
+  # Gold
+  devices: done
+  diagnostics: done
+  discovery:
+    status: exempt
+    comment: A cloud service cannot be discovered on the network.
+  discovery-update-info:
+    status: exempt
+    comment: See discovery.
+  docs-data-update: done
+  docs-examples: done
+  docs-known-limitations: done
+  docs-supported-devices:
+    status: exempt
+    comment: No devices; the integration manages files.
+  docs-supported-functions: done
+  docs-troubleshooting: done
+  docs-use-cases: done
+  dynamic-devices:
+    status: exempt
+    comment: A single service device.
+  entity-category: done
+  entity-device-class: done
+  entity-disabled-by-default:
+    status: exempt
+    comment: Every entity is useful out of the box; detail sensors are diagnostic.
+  entity-translations: done
+  exception-translations: done
+  icon-translations: done
+  reconfiguration-flow: done
+  repair-issues: done
+  stale-devices:
+    status: exempt
+    comment: A single service device that lives as long as the entry.
+
+  # Platinum
+  async-dependency: done
+  inject-websession: done
+  strict-typing: done

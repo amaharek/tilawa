@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Run a local Home Assistant Core with this integration symlinked in.
+#   HA_VERSION=2026.10.2 scripts/develop     # test against a newer release
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+HA_VERSION="${HA_VERSION:-2026.3.4}"
+VENV="dev/.venv"
+CONFIG="dev/config"
+MEDIA="$(pwd)/dev/media"
+
+if ! "$VENV/bin/python" -c "import homeassistant.const as c, sys; sys.exit(c.__version__ != '$HA_VERSION')" 2>/dev/null; then
+  echo "Creating $VENV with Home Assistant $HA_VERSION (uv)"
+  uv venv "$VENV" --python 3.14
+  uv pip install --python "$VENV/bin/python" "homeassistant==$HA_VERSION"
+fi
+
+mkdir -p "$CONFIG/custom_components" "$MEDIA"
+ln -sfn "$(pwd)/custom_components/tilawa" "$CONFIG/custom_components/tilawa"
+if [ ! -f "$CONFIG/configuration.yaml" ]; then
+  sed "s#__MEDIA__#$MEDIA#g" dev/configuration.yaml > "$CONFIG/configuration.yaml"
+fi
+
+echo "Home Assistant $HA_VERSION -> http://localhost:8123  (media folder: $MEDIA)"
+exec "$VENV/bin/hass" -c "$CONFIG" --debug

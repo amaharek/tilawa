@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Formatting, lint and strict typing, exactly as CI runs them.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+uv run ruff format --check .
+uv run ruff check .
+uv run mypy

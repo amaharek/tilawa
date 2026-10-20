@@ -1,0 +1,122 @@
+[project]
+name = "tilawa"
+version = "0.1.0"
+description = "Home Assistant integration that builds a tagged Quran recitation library for Music Assistant from mp3quran.net"
+readme = "README.md"
+requires-python = ">=3.14.2"
+license = "MIT"
+# The integration itself is distributed through HACS / Marketplace, not PyPI.
+# This project table only exists so that uv can manage the dev environment.
+dependencies = []
+
+[dependency-groups]
+dev = [
+  # Pins homeassistant==2026.3.4 (the minimum supported HA version) plus pytest, pytest-asyncio, pytest-socket
+  "pytest-homeassistant-custom-component==0.13.320",
+  "aioresponses>=0.7.8",
+  "pytest-cov>=6.0",
+  "ruff>=0.12",
+  "mypy>=1.17",
+  "mutagen>=1.47.0,<2",
+  # Only for scripts/make_brand.py
+  "Pillow>=11.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+addopts = "-q --cov=custom_components.tilawa --cov-report=term-missing:skip-covered"
+filterwarnings = ["error::DeprecationWarning:custom_components"]
+
+[tool.coverage.run]
+branch = true
+source = ["custom_components.tilawa"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+files = ["custom_components/tilawa"]
+show_error_codes = true
+warn_unreachable = true
+local_partial_types = true
+# Keep mypy focused on our code; third-party packages without stubs are ignored below.
+follow_imports = "silent"
+
+[[tool.mypy.overrides]]
+module = ["mutagen", "mutagen.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# mutagen has no type hints; the tagger is the only module that calls it.
+# (custom_components/ has no __init__.py, so mypy names the module tilawa.lib.tagger.)
+module = ["tilawa.lib.tagger", "custom_components.tilawa.lib.tagger"]
+disallow_untyped_calls = false
+
+[tool.ruff]
+required-version = ">=0.12.0"
+target-version = "py314"
+line-length = 88
+extend-exclude = ["dev"]
+
+[tool.ruff.lint]
+# Rule set modelled on Home Assistant core's pyproject.toml.
+select = [
+  "A001", "ASYNC", "B002", "B005", "B007", "B014", "B015", "B017", "B018", "B023",
+  "B024", "B026", "B032", "B035", "B904", "BLE", "C", "COM818", "D", "DTZ003",
+  "DTZ004", "E", "F", "FLY", "FURB", "G", "I", "INP", "ISC", "ICN001", "LOG",
+  "N804", "N805", "N815", "PERF", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET",
+  "RSE", "RUF005", "RUF006", "RUF007", "RUF008", "RUF010", "RUF013", "RUF016",
+  "RUF017", "RUF018", "RUF019", "RUF020", "RUF021", "RUF022", "RUF023", "RUF024",
+  "RUF026", "RUF030", "RUF032", "RUF033", "RUF034", "RUF100", "S102", "S103",
+  "S108", "S306", "S307", "S313", "S314", "S315", "S316", "S317", "S318", "S319",
+  "S601", "S602", "S604", "S608", "S609", "SIM", "SLF", "SLOT", "T100", "T20",
+  "TC", "TID", "TRY", "UP", "W",
+]
+ignore = [
+  "D202", "D203", "D213", "D406", "D407", "E501", "E731",
+  "PLC1901", "PLR0911", "PLR0912", "PLR0913", "PLR0915", "PLR2004", "PLW2901",
+  "PT011", "PT018", "RUF001", "RUF002", "RUF003", "RUF015",
+  "SIM102", "SIM108", "TC001", "TC003", "TRY003", "TRY400",
+  # homeassistant is third-party here (first-party in core, where TC001 is ignored)
+  "TC002",
+  "UP046", "UP047", "UP049",
+  # Handled by the formatter
+  "COM812", "COM819", "ISC001",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D", "S101", "SLF001", "PLR2004", "INP001", "ASYNC", "TC"]
+"scripts/**" = ["INP001", "T20"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"async_timeout".msg = "use asyncio.timeout instead"
+"pytz".msg = "use zoneinfo instead"
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+combine-as-imports = true
+split-on-trailing-comma = false
+known-first-party = ["custom_components.tilawa", "tests"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 25
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.pylint]
+max-args = 8
+max-branches = 25
+max-returns = 10
+max-statements = 60

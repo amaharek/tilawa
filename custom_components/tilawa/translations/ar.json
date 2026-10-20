@@ -1,0 +1,332 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "مجلد المكتبة",
+        "description": "المجلد الذي تُحفظ فيه التلاوات. يجب أن يحتوي Music Assistant على مصدر Filesystem (local disk) يشير إلى هذا المجلد. المساحة الحرة على هذا القرص: {free_space}.",
+        "data": {
+          "library_path": "مجلد المكتبة"
+        },
+        "data_description": {
+          "library_path": "مسار مطلق داخل مجلد وسائط أو مجلد خارجي مسموح به."
+        }
+      },
+      "naming": {
+        "title": "الأسماء والعناوين",
+        "description": "كيفية تسمية القرّاء والألبومات والمقاطع في الوسوم وعلى القرص.",
+        "data": {
+          "names_language": "أسماء القرّاء والألبومات",
+          "title_format": "عنوان المقطع"
+        }
+      },
+      "reciter": {
+        "title": "اختر قارئًا",
+        "description": "يمكنك إضافة قرّاء آخرين لاحقًا من صفحة التكامل.",
+        "data": {
+          "reciter_id": "القارئ"
+        }
+      },
+      "version": {
+        "title": "اختر الرواية",
+        "description": "روايات {reciter}. اترك نطاق السور فارغًا لتنزيل كل ما هو متاح.",
+        "data": {
+          "moshaf_id": "الرواية",
+          "surahs": "نطاق السور (اختياري)"
+        },
+        "data_description": {
+          "surahs": "مثل 78-114 لجزء عمّ، أو 1, 36, 55-56."
+        }
+      },
+      "reconfigure": {
+        "title": "تغيير مجلد المكتبة",
+        "description": "يمكن نقل الملفات المنزّلة إلى المجلد الجديد.",
+        "data": {
+          "library_path": "مجلد المكتبة",
+          "move_files": "نقل الملفات الحالية"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "تعذّر الوصول إلى mp3quran.net. تحقّق من اتصالك بالإنترنت ثم أعد المحاولة.",
+      "invalid_path": "أدخل مسارًا مطلقًا.",
+      "not_writable": "تعذّر إنشاء المجلد أو الكتابة فيه.",
+      "path_not_allowed": "هذا المسار خارج مجلدات الوسائط. أضفه إلى allowlist_external_dirs أو اختر مجلد وسائط.",
+      "unknown_moshaf": "هذه الرواية لا تخص القارئ المختار.",
+      "invalid_surahs": "استخدم أرقام سور بين 1 و114، مثل 78-114 أو 1, 36, 55-56.",
+      "surahs_not_available": "هذه الرواية لا تحتوي على أي من هذه السور."
+    },
+    "abort": {
+      "already_configured": "تلاوة مُعدّة بالفعل.",
+      "single_instance_allowed": "يمكن إعداد مكتبة تلاوة واحدة فقط.",
+      "reconfigure_successful": "تم تحديث مجلد المكتبة."
+    }
+  },
+  "config_subentries": {
+    "selection": {
+      "initiate_flow": {
+        "user": "إضافة قارئ",
+        "reconfigure": "تغيير نطاق السور"
+      },
+      "entry_type": "رواية قارئ",
+      "step": {
+        "user": {
+          "title": "اختر قارئًا",
+          "data": {
+            "reciter_id": "القارئ"
+          }
+        },
+        "version": {
+          "title": "اختر الرواية",
+          "description": "روايات {reciter}. اترك نطاق السور فارغًا لتنزيل كل ما هو متاح.",
+          "data": {
+            "moshaf_id": "الرواية",
+            "surahs": "نطاق السور (اختياري)"
+          },
+          "data_description": {
+            "surahs": "مثل 78-114 لجزء عمّ، أو 1, 36, 55-56."
+          }
+        },
+        "reconfigure": {
+          "title": "تغيير نطاق السور",
+          "description": "{selection}. السور المتاحة: {available}. اتركه فارغًا للكل.",
+          "data": {
+            "surahs": "نطاق السور (اختياري)"
+          }
+        }
+      },
+      "error": {
+        "unknown_moshaf": "هذه الرواية لا تخص القارئ المختار.",
+        "invalid_surahs": "استخدم أرقام سور بين 1 و114، مثل 78-114 أو 1, 36, 55-56.",
+        "surahs_not_available": "هذه الرواية لا تحتوي على أي من هذه السور."
+      },
+      "abort": {
+        "already_configured": "هذه الرواية موجودة في مكتبتك بالفعل.",
+        "entry_not_loaded": "تلاوة غير محمّلة. أعد تحميل التكامل ثم حاول مجددًا.",
+        "selection_missing_upstream": "لم يعد موقع mp3quran.net يوفّر هذه الرواية.",
+        "reconfigure_successful": "تم تحديث نطاق السور."
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "خيارات تلاوة",
+        "description": "تغيير الأسماء أو العناوين يعيد وسم الملفات الحالية ويعيد تسميتها. يتعامل Music Assistant مع الملفات المعاد تسميتها كعناصر جديدة.",
+        "data": {
+          "names_language": "أسماء القرّاء والألبومات",
+          "title_format": "عنوان المقطع",
+          "max_parallel": "التنزيلات المتوازية",
+          "bandwidth_limit_kbps": "حد سرعة التنزيل",
+          "auto_sync": "المزامنة التلقائية",
+          "redownload_changed": "إعادة تنزيل الملفات التي تغيّرت في المصدر"
+        },
+        "data_description": {
+          "bandwidth_limit_kbps": "0 يعني بلا حد.",
+          "auto_sync": "تعمل الساعة 03:00 بالتوقيت المحلي؛ المزامنة الأسبوعية يوم الاثنين.",
+          "redownload_changed": "يفحص كل ملف مقابل الخادم في كل مزامنة ويعيد تنزيله إذا استبدله mp3quran.net."
+        }
+      }
+    }
+  },
+  "selector": {
+    "names_language": {
+      "options": {
+        "ar": "العربية",
+        "eng": "الإنجليزية"
+      }
+    },
+    "title_format": {
+      "options": {
+        "number_ar": "الرقم والاسم العربي (018 الكهف)",
+        "number_en": "الرقم والاسم الإنجليزي (018 Al-Kahf)",
+        "number_both": "الرقم والاسمان (018 الكهف – Al-Kahf)"
+      }
+    },
+    "auto_sync": {
+      "options": {
+        "off": "متوقفة",
+        "daily": "يوميًا",
+        "weekly": "أسبوعيًا"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "api": {
+        "name": "الوصول إلى mp3quran.net"
+      }
+    },
+    "button": {
+      "sync_now": {
+        "name": "مزامنة الآن"
+      },
+      "cancel_sync": {
+        "name": "إلغاء المزامنة"
+      }
+    },
+    "sensor": {
+      "sync_status": {
+        "name": "حالة المزامنة",
+        "state": {
+          "idle": "خاملة",
+          "syncing": "جارٍ التنزيل",
+          "retagging": "جارٍ إعادة الوسم",
+          "moving": "جارٍ نقل الملفات",
+          "error": "خطأ"
+        },
+        "state_attributes": {
+          "job": {
+            "name": "المهمة"
+          },
+          "current": {
+            "name": "المقطع الحالي"
+          },
+          "done": {
+            "name": "المنجز"
+          },
+          "total": {
+            "name": "الإجمالي"
+          },
+          "failed": {
+            "name": "الفاشل"
+          },
+          "error": {
+            "name": "آخر خطأ"
+          }
+        }
+      },
+      "sync_progress": {
+        "name": "تقدّم المزامنة"
+      },
+      "files": {
+        "name": "الملفات"
+      },
+      "library_size": {
+        "name": "حجم المكتبة"
+      },
+      "last_sync": {
+        "name": "آخر مزامنة ناجحة"
+      },
+      "reciters": {
+        "name": "القرّاء"
+      }
+    }
+  },
+  "services": {
+    "sync": {
+      "name": "مزامنة",
+      "description": "ينزّل السور الناقصة لكل الاختيارات، أو لرواية قارئ واحدة.",
+      "fields": {
+        "reciter_id": {
+          "name": "معرّف القارئ",
+          "description": "معرّف القارئ في mp3quran. حدّد المعرّفين معًا لمزامنة رواية واحدة فقط."
+        },
+        "moshaf_id": {
+          "name": "معرّف الرواية",
+          "description": "معرّف المصحف في mp3quran."
+        }
+      }
+    },
+    "add_selection": {
+      "name": "إضافة اختيار",
+      "description": "يضيف رواية قارئ إلى المكتبة ويبدأ تنزيلها.",
+      "fields": {
+        "reciter_id": {
+          "name": "معرّف القارئ",
+          "description": "معرّف القارئ في mp3quran."
+        },
+        "moshaf_id": {
+          "name": "معرّف الرواية",
+          "description": "معرّف المصحف لهذا القارئ في mp3quran."
+        },
+        "surahs": {
+          "name": "السور",
+          "description": "نطاق اختياري مثل 78-114. الفراغ يعني تنزيل كل ما هو متاح."
+        }
+      }
+    },
+    "remove_selection": {
+      "name": "إزالة اختيار",
+      "description": "يزيل رواية قارئ من المكتبة، مع إمكانية حذف ملفاتها.",
+      "fields": {
+        "reciter_id": {
+          "name": "معرّف القارئ",
+          "description": "معرّف القارئ في mp3quran."
+        },
+        "moshaf_id": {
+          "name": "معرّف الرواية",
+          "description": "معرّف المصحف في mp3quran."
+        },
+        "delete_files": {
+          "name": "حذف الملفات",
+          "description": "حذف الملفات المنزّلة لهذه الرواية أيضًا."
+        }
+      }
+    },
+    "retag": {
+      "name": "إعادة الوسم",
+      "description": "يعيد كتابة الوسوم وأسماء الملفات وفق خيارات التسمية الحالية دون تنزيل."
+    }
+  },
+  "exceptions": {
+    "not_loaded": {
+      "message": "تلاوة غير مُعدّة أو غير محمّلة."
+    },
+    "busy": {
+      "message": "هناك مزامنة قيد التشغيل. ألغِها أو انتظر انتهاءها."
+    },
+    "unknown_selection": {
+      "message": "لا يوجد اختيار {selection}."
+    },
+    "unknown_reciter": {
+      "message": "لا يوجد قارئ بالمعرّف {reciter_id} في فهرس mp3quran."
+    },
+    "unknown_moshaf": {
+      "message": "الرواية {moshaf_id} لا تخص {reciter}."
+    },
+    "invalid_surahs": {
+      "message": "{surahs} ليس نطاق سور صالحًا. استخدم أرقامًا بين 1 و114، مثل 78-114."
+    },
+    "surahs_not_available": {
+      "message": "هذه الرواية لا تحتوي على أي من السور في {surahs}."
+    },
+    "already_selected": {
+      "message": "الاختيار {selection} موجود في المكتبة بالفعل."
+    }
+  },
+  "issues": {
+    "library_not_writable": {
+      "title": "مجلد المكتبة غير قابل للكتابة",
+      "description": "تعذّر على تلاوة الكتابة في {path}. تحقّق من وجود المجلد ومن صلاحية Home Assistant للكتابة فيه، ثم شغّل المزامنة مجددًا."
+    },
+    "low_disk_space": {
+      "title": "لا توجد مساحة كافية للمزامنة",
+      "description": "تحتاج المزامنة نحو {needed} بينما المتاح {free} فقط. أفرغ مساحة أو أزل اختيارًا، ثم شغّل المزامنة مجددًا."
+    },
+    "selection_missing_upstream": {
+      "title": "رواية مختارة لم تعد متاحة",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "إزالة اختيار غير متاح",
+            "description": "لم يعد mp3quran.net يدرج {selection}. هل تريد إزالته من المكتبة؟ ستبقى الملفات المنزّلة."
+          }
+        }
+      }
+    },
+    "orphaned_files": {
+      "title": "بقيت ملفات لاختيار محذوف",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "اختيار محذوف",
+            "description": "أُزيل {selection} لكن ما زال {count} من الملفات المنزّلة على القرص. أبقِها أو احذفها الآن.",
+            "data": {
+              "delete_files": "حذف الملفات"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+sync:
+  fields:
+    reciter_id:
+      required: false
+      example: 118
+      selector:
+        number:
+          min: 1
+          mode: box
+    moshaf_id:
+      required: false
+      example: 118
+      selector:
+        number:
+          min: 1
+          mode: box
+
+add_selection:
+  fields:
+    reciter_id:
+      required: true
+      example: 118
+      selector:
+        number:
+          min: 1
+          mode: box
+    moshaf_id:
+      required: true
+      example: 118
+      selector:
+        number:
+          min: 1
+          mode: box
+    surahs:
+      required: false
+      example: "78-114"
+      selector:
+        text:
+
+remove_selection:
+  fields:
+    reciter_id:
+      required: true
+      example: 118
+      selector:
+        number:
+          min: 1
+          mode: box
+    moshaf_id:
+      required: true
+      example: 118
+      selector:
+        number:
+          min: 1
+          mode: box
+    delete_files:
+      required: false
+      default: false
+      selector:
+        boolean:
+
+retag:
