@@ -44,7 +44,8 @@ tagged files in a folder Music Assistant scans**.
 
 ## Requirements
 
-- Home Assistant **2026.3.0 or newer** (OS, Supervised, Container or Core).
+- Home Assistant **2026.3.0 or newer** (OS, Supervised, Container or Core). No extra
+  Python packages: the ID3 tagging library (mutagen) ships with Home Assistant itself.
 - Music Assistant with a **Filesystem (local disk)** source pointing at the same folder.
 - Disk space: a complete murattal recording of the whole Quran is **1.5 to 2.5 GB**
   (see [Storage](#storage-estimates)).

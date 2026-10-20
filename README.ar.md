@@ -21,7 +21,8 @@
 
 ## المتطلبات
 
-- Home Assistant إصدار **2026.3.0** أو أحدث.
+- Home Assistant إصدار **2026.3.0** أو أحدث. لا حاجة إلى حزم Python إضافية؛ مكتبة وسوم
+  ID3 (mutagen) تأتي مع Home Assistant نفسه.
 - Music Assistant مع مصدر **Filesystem (local disk)** يشير إلى المجلد نفسه. في نظام
   HA OS تَرى إضافة Music Assistant مجلد `/media` مباشرة، فأضف المزوّد بالمسار
   `/media/Quran`. في Docker اربط المجلد نفسه في الحاويتين.

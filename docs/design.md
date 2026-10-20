@@ -77,7 +77,6 @@ Decisions already taken (see the plan): name/domain **Tilawa / `tilawa`**; selec
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/amaharek/tilawa/issues",
   "loggers": ["mutagen"],
-  "requirements": ["mutagen>=1.47.0,<2"],
   "single_config_entry": true,
   "version": "0.1.0"
 }
@@ -456,6 +455,9 @@ a GitHub release from a `v*` tag after checking it matches `manifest.json`.
   `busy`. Only `remove_selection` with `delete_files` and the orphaned-files repair
   refuse to run while a job is active.
 - `manifest.json` lists `repairs` as a dependency so the fix flows are always available.
+- `manifest.json` declares **no `requirements`**: mutagen is in Home Assistant core's own
+  `requirements.txt` (1.47.0 at 2026.3.0), and hassfest rejects custom integrations that
+  re-list a core dependency. The dev group still pins `mutagen>=1.47.0,<2` for tests.
 - `dependencies`, `services.yaml`, `icons.json` and both translation files exist; there
   is no `strings.json` (Marketplace guidance).
 - The catalogue coordinator polls daily (connectivity ping) and fetches weekly, so the
