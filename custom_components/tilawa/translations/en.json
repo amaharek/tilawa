@@ -16,7 +16,8 @@
         "description": "How artists, albums and tracks are named in the tags and on disk.",
         "data": {
           "names_language": "Reciter and album names",
-          "title_format": "Track title"
+          "title_format": "Track title",
+          "number_separator": "Between number and name"
         }
       },
       "reciter": {
@@ -115,6 +116,7 @@
         "data": {
           "names_language": "Reciter and album names",
           "title_format": "Track title",
+          "number_separator": "Between number and name",
           "max_parallel": "Parallel downloads",
           "bandwidth_limit_kbps": "Bandwidth limit",
           "auto_sync": "Automatic sync",
@@ -140,6 +142,13 @@
         "number_ar": "Number and Arabic name (018 الكهف)",
         "number_en": "Number and English name (018 Al-Kahf)",
         "number_both": "Number, Arabic and English (018 الكهف – Al-Kahf)"
+      }
+    },
+    "number_separator": {
+      "options": {
+        "space": "Space (018 الكهف)",
+        "hyphen": "Hyphen (018- الكهف)",
+        "spaced_hyphen": "Spaced hyphen (018 - الكهف)"
       }
     },
     "auto_sync": {

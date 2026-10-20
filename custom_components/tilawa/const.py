@@ -24,6 +24,7 @@ SUBENTRY_TYPE_SELECTION: Final = "selection"
 # Options
 OPT_NAMES_LANGUAGE: Final = "names_language"
 OPT_TITLE_FORMAT: Final = "title_format"
+OPT_NUMBER_SEPARATOR: Final = "number_separator"
 OPT_MAX_PARALLEL: Final = "max_parallel"
 OPT_BANDWIDTH_LIMIT: Final = "bandwidth_limit_kbps"
 OPT_AUTO_SYNC: Final = "auto_sync"
@@ -41,6 +42,7 @@ BANDWIDTH_LIMIT_MAX: Final = 100_000
 DEFAULT_OPTIONS: Final[dict[str, str | int | bool]] = {
     OPT_NAMES_LANGUAGE: "ar",
     OPT_TITLE_FORMAT: "number_ar",
+    OPT_NUMBER_SEPARATOR: "space",
     OPT_MAX_PARALLEL: 2,
     OPT_BANDWIDTH_LIMIT: 0,
     OPT_AUTO_SYNC: AUTO_SYNC_OFF,

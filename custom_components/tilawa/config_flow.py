@@ -49,6 +49,7 @@ from .const import (
     OPT_BANDWIDTH_LIMIT,
     OPT_MAX_PARALLEL,
     OPT_NAMES_LANGUAGE,
+    OPT_NUMBER_SEPARATOR,
     OPT_REDOWNLOAD_CHANGED,
     OPT_TITLE_FORMAT,
     SUBENTRY_TYPE_SELECTION,
@@ -65,6 +66,7 @@ from .helpers import (
 from .lib.api import Mp3QuranClient, Mp3QuranError
 from .lib.models import (
     LANGUAGES,
+    NUMBER_SEPARATORS,
     TITLE_FORMATS,
     Catalogue,
     Language,
@@ -88,6 +90,13 @@ STEP_NAMING_SCHEMA = vol.Schema(
             SelectSelectorConfig(
                 options=list(TITLE_FORMATS),
                 translation_key=OPT_TITLE_FORMAT,
+                mode=SelectSelectorMode.LIST,
+            )
+        ),
+        vol.Required(OPT_NUMBER_SEPARATOR): SelectSelector(
+            SelectSelectorConfig(
+                options=list(NUMBER_SEPARATORS),
+                translation_key=OPT_NUMBER_SEPARATOR,
                 mode=SelectSelectorMode.LIST,
             )
         ),

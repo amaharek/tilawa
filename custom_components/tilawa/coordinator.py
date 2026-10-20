@@ -41,6 +41,7 @@ from .const import (
     OPT_BANDWIDTH_LIMIT,
     OPT_MAX_PARALLEL,
     OPT_NAMES_LANGUAGE,
+    OPT_NUMBER_SEPARATOR,
     OPT_REDOWNLOAD_CHANGED,
     OPT_TITLE_FORMAT,
     REPO_URL,
@@ -437,7 +438,7 @@ class TilawaSyncManager:
 
         naming_changed = any(
             options[key] != previous[key]
-            for key in (OPT_NAMES_LANGUAGE, OPT_TITLE_FORMAT)
+            for key in (OPT_NAMES_LANGUAGE, OPT_TITLE_FORMAT, OPT_NUMBER_SEPARATOR)
         )
         if options[OPT_AUTO_SYNC] != previous[OPT_AUTO_SYNC]:
             self._arm_auto_sync()

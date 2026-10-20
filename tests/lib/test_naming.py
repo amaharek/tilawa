@@ -157,3 +157,17 @@ def test_album_and_artist_are_identical_across_tracks(catalogue: Catalogue) -> N
     assert artists == {"محمود خليل الحصري"}
     albums = {next(iter(c))[0] for c in by_moshaf.values()}
     assert len(albums) == len(reciter.moshafs)
+
+
+def test_number_separator(catalogue: Catalogue) -> None:
+    kahf = catalogue.suwar[18]
+    assert naming.track_title(kahf, "number_ar", "hyphen") == "018- الكهف"
+    assert naming.track_title(kahf, "number_en", "spaced_hyphen") == "018 - Al-Kahf"
+    assert naming.track_filename(kahf, "number_ar", "hyphen") == "018- الكهف.mp3"
+    assert naming.sort_title(kahf, "spaced_hyphen") == "018 - Al-Kahf"
+    # The default keeps the 0.1.0 fingerprint so existing indexes stay valid.
+    assert naming.naming_fingerprint(NamingOptions()) == "1:ar:number_ar"
+    assert (
+        naming.naming_fingerprint(NamingOptions(number_separator="hyphen"))
+        == "1:ar:number_ar:hyphen"
+    )

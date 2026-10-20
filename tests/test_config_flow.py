@@ -18,6 +18,7 @@ from custom_components.tilawa.const import (
     OPT_BANDWIDTH_LIMIT,
     OPT_MAX_PARALLEL,
     OPT_NAMES_LANGUAGE,
+    OPT_NUMBER_SEPARATOR,
     OPT_REDOWNLOAD_CHANGED,
     OPT_TITLE_FORMAT,
     SUBENTRY_TYPE_SELECTION,
@@ -51,7 +52,12 @@ async def test_full_flow_creates_entry_with_first_selection(
     )
     assert result["step_id"] == "naming"
     result = await hass.config_entries.flow.async_configure(
-        result["flow_id"], {OPT_NAMES_LANGUAGE: "ar", OPT_TITLE_FORMAT: "number_ar"}
+        result["flow_id"],
+        {
+            OPT_NAMES_LANGUAGE: "ar",
+            OPT_TITLE_FORMAT: "number_ar",
+            OPT_NUMBER_SEPARATOR: "space",
+        },
     )
     assert result["step_id"] == "reciter"
     result = await hass.config_entries.flow.async_configure(
@@ -117,7 +123,12 @@ async def test_flow_errors(
         result["flow_id"], {CONF_LIBRARY_PATH: library_path}
     )
     result = await hass.config_entries.flow.async_configure(
-        result["flow_id"], {OPT_NAMES_LANGUAGE: "eng", OPT_TITLE_FORMAT: "number_en"}
+        result["flow_id"],
+        {
+            OPT_NAMES_LANGUAGE: "eng",
+            OPT_TITLE_FORMAT: "number_en",
+            OPT_NUMBER_SEPARATOR: "hyphen",
+        },
     )
     result = await hass.config_entries.flow.async_configure(
         result["flow_id"], {CONF_RECITER_ID: "118"}
@@ -223,6 +234,7 @@ async def test_options_flow(hass: HomeAssistant, setup_entry: MockConfigEntry) -
             {
                 OPT_NAMES_LANGUAGE: "eng",
                 OPT_TITLE_FORMAT: "number_both",
+                OPT_NUMBER_SEPARATOR: "spaced_hyphen",
                 OPT_MAX_PARALLEL: 3,
                 OPT_BANDWIDTH_LIMIT: 500,
                 OPT_AUTO_SYNC: "daily",

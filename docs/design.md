@@ -150,7 +150,7 @@ class SyncEngine:
 | `Reciter` | `id`, `name_ar`, `name_en`, `moshafs: tuple[Moshaf, ...]` |
 | `Catalogue` | `fetched_at`, `reciters`, `moshafs`, `suwar`, `riwayat`, `moshaf_types` (all `Mapping[int, …]`), helpers `reciter_for_moshaf()` |
 | `Selection` | `reciter_id`, `moshaf_id`, `surahs: frozenset[int] \| None` (None = everything the moshaf offers); `key` property `"118:119"` |
-| `NamingOptions` | `names_language: Literal["ar","eng"]`, `title_format: Literal["number_ar","number_en","number_both"]` |
+| `NamingOptions` | `names_language: Literal["ar","eng"]`, `title_format: Literal["number_ar","number_en","number_both"]`, `number_separator: Literal["space","hyphen","spaced_hyphen"]` (0.1.1) |
 | `TrackTags` | `artist`, `album_artist`, `album`, `title`, `track: tuple[int,int]`, `disc=(1,1)`, `genre="Quran"`, `sort_artist`, `sort_album_artist`, `sort_album`, `sort_title`, `reciter_id`, `moshaf_id`, `surah`, `source_etag` |
 | `TrackSpec` | `key`, `url`, `relative_path: PurePath`, `tags: TrackTags`, `surah` |
 | `RemoteFile` | `size: int`, `etag: str \| None`, `last_modified: str \| None` |
@@ -351,6 +351,7 @@ the identity). Removal uses HA's own subentry delete; the update listener then r
 |---|---|---|
 | `names_language` | ar / eng | ar |
 | `title_format` | number_ar / number_en / number_both | number_ar |
+| `number_separator` | space / hyphen / spaced_hyphen (`018 `, `018- `, `018 - `) | space |
 | `max_parallel` | 1–4 | 2 |
 | `bandwidth_limit_kbps` | 0–100000 (0 = unlimited) | 0 |
 | `auto_sync` | off / daily / weekly | off |

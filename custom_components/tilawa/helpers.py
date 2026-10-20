@@ -16,6 +16,7 @@ from .const import (
     DEFAULT_SUBFOLDER,
     DOMAIN,
     OPT_NAMES_LANGUAGE,
+    OPT_NUMBER_SEPARATOR,
     OPT_TITLE_FORMAT,
     SUBENTRY_TYPE_SELECTION,
 )
@@ -24,6 +25,7 @@ from .lib.models import (
     Language,
     Moshaf,
     NamingOptions,
+    NumberSeparator,
     Selection,
     TitleFormat,
 )
@@ -76,6 +78,9 @@ def naming_options_of(entry: ConfigEntry) -> NamingOptions:
         names_language=cast("Language", entry.options.get(OPT_NAMES_LANGUAGE, "ar")),
         title_format=cast(
             "TitleFormat", entry.options.get(OPT_TITLE_FORMAT, "number_ar")
+        ),
+        number_separator=cast(
+            "NumberSeparator", entry.options.get(OPT_NUMBER_SEPARATOR, "space")
         ),
     )
 

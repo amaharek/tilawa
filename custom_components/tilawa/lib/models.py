@@ -14,9 +14,11 @@ from typing import Any, Literal, Self
 
 type Language = Literal["ar", "eng"]
 type TitleFormat = Literal["number_ar", "number_en", "number_both"]
+type NumberSeparator = Literal["space", "hyphen", "spaced_hyphen"]
 
 LANGUAGES: tuple[Language, ...] = ("ar", "eng")
 TITLE_FORMATS: tuple[TitleFormat, ...] = ("number_ar", "number_en", "number_both")
+NUMBER_SEPARATORS: tuple[NumberSeparator, ...] = ("space", "hyphen", "spaced_hyphen")
 SURAH_COUNT = 114
 ALL_SURAHS: frozenset[int] = frozenset(range(1, SURAH_COUNT + 1))
 GENRE = "Quran"
@@ -296,6 +298,7 @@ class NamingOptions:
 
     names_language: Language = "ar"
     title_format: TitleFormat = "number_ar"
+    number_separator: NumberSeparator = "space"
 
 
 @dataclass(frozen=True, slots=True)

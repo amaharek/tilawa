@@ -16,7 +16,8 @@
         "description": "كيفية تسمية القرّاء والألبومات والمقاطع في الوسوم وعلى القرص.",
         "data": {
           "names_language": "أسماء القرّاء والألبومات",
-          "title_format": "عنوان المقطع"
+          "title_format": "عنوان المقطع",
+          "number_separator": "بين الرقم والاسم"
         }
       },
       "reciter": {
@@ -115,6 +116,7 @@
         "data": {
           "names_language": "أسماء القرّاء والألبومات",
           "title_format": "عنوان المقطع",
+          "number_separator": "بين الرقم والاسم",
           "max_parallel": "التنزيلات المتوازية",
           "bandwidth_limit_kbps": "حد سرعة التنزيل",
           "auto_sync": "المزامنة التلقائية",
@@ -140,6 +142,13 @@
         "number_ar": "الرقم والاسم العربي (018 الكهف)",
         "number_en": "الرقم والاسم الإنجليزي (018 Al-Kahf)",
         "number_both": "الرقم والاسمان (018 الكهف – Al-Kahf)"
+      }
+    },
+    "number_separator": {
+      "options": {
+        "space": "مسافة (018 الكهف)",
+        "hyphen": "شَرطة (018- الكهف)",
+        "spaced_hyphen": "شَرطة بين مسافتين (018 - الكهف)"
       }
     },
     "auto_sync": {

@@ -124,6 +124,7 @@ Settings → Devices & services → Tilawa → **Configure**:
 |---|---|---|
 | Reciter and album names | Arabic | Language of `TPE1`/`TPE2`/`TALB` and of the folder names. |
 | Track title | Number and Arabic name | `018 الكهف`, `018 Al-Kahf` or `018 الكهف – Al-Kahf`. Also the file name. |
+| Between number and name | Space | `018 الكهف`, `018- الكهف` or `018 - الكهف`. Applies to titles, sort titles and file names. |
 | Parallel downloads | 2 | 1 to 4 simultaneous files. Please stay polite to the free service. |
 | Bandwidth limit | 0 (unlimited) | kB/s shared by all downloads. |
 | Automatic sync | Off | Daily or weekly at 03:00 local time (weekly on Mondays). |

@@ -18,6 +18,7 @@ from .models import (
     Language,
     Moshaf,
     NamingOptions,
+    NumberSeparator,
     Reciter,
     Surah,
     TitleFormat,
@@ -29,6 +30,12 @@ from .models import (
 ALBUM_SEPARATOR = " – "  # U+2013 en dash
 TITLE_SEPARATOR = " – "
 NAMING_FINGERPRINT_VERSION = 1
+# Text between the surah number and the name: ``018 الكهف``, ``018- الكهف``, ``018 - الكهف``.
+NUMBER_SEPARATOR_TEXT: dict[NumberSeparator, str] = {
+    "space": " ",
+    "hyphen": "- ",
+    "spaced_hyphen": " - ",
+}
 
 _SOFT_HYPHEN = "­"
 _WHITESPACE_RE = re.compile(r"\s+")
@@ -178,27 +185,40 @@ def surah_display(surah: Surah, title_format: TitleFormat) -> str:
     return f"{surah.name_ar}{TITLE_SEPARATOR}{surah.name_en}"
 
 
-def track_title(surah: Surah, title_format: TitleFormat) -> str:
-    """Return the ``TIT2`` title, e.g. ``018 الكهف``."""
-    return f"{track_number(surah.number)} {surah_display(surah, title_format)}"
+def track_title(
+    surah: Surah, title_format: TitleFormat, separator: NumberSeparator = "space"
+) -> str:
+    """Return the ``TIT2`` title, e.g. ``018 الكهف`` or ``018- الكهف``."""
+    sep = NUMBER_SEPARATOR_TEXT[separator]
+    return f"{track_number(surah.number)}{sep}{surah_display(surah, title_format)}"
 
 
-def sort_title(surah: Surah) -> str:
+def sort_title(surah: Surah, separator: NumberSeparator = "space") -> str:
     """Return the ``TSOT`` sort title, always English."""
-    return f"{track_number(surah.number)} {surah.name_en}"
+    return (
+        f"{track_number(surah.number)}{NUMBER_SEPARATOR_TEXT[separator]}{surah.name_en}"
+    )
 
 
-def track_filename(surah: Surah, title_format: TitleFormat) -> str:
+def track_filename(
+    surah: Surah, title_format: TitleFormat, separator: NumberSeparator = "space"
+) -> str:
     """Return the file name, e.g. ``018 الكهف.mp3``."""
     name = safe_component(surah_display(surah, title_format))
-    return f"{track_number(surah.number)} {name}.mp3"
+    return f"{track_number(surah.number)}{NUMBER_SEPARATOR_TEXT[separator]}{name}.mp3"
 
 
 def naming_fingerprint(options: NamingOptions) -> str:
-    """Return a string that changes whenever tags or paths would change."""
-    return (
+    """Return a string that changes whenever tags or paths would change.
+
+    The default separator is left out so indexes written by 0.1.0 stay valid.
+    """
+    fingerprint = (
         f"{NAMING_FINGERPRINT_VERSION}:{options.names_language}:{options.title_format}"
     )
+    if options.number_separator != "space":
+        fingerprint += f":{options.number_separator}"
+    return fingerprint
 
 
 def build_track(
@@ -216,12 +236,12 @@ def build_track(
         artist=artist,
         album_artist=artist,
         album=album,
-        title=track_title(surah, options.title_format),
+        title=track_title(surah, options.title_format, options.number_separator),
         track=(surah.number, SURAH_COUNT),
         sort_artist=normalize(reciter.name_en),
         sort_album_artist=normalize(reciter.name_en),
         sort_album=album_sort,
-        sort_title=sort_title(surah),
+        sort_title=sort_title(surah, options.number_separator),
         reciter_id=reciter.id,
         moshaf_id=moshaf.id,
         surah=surah.number,
@@ -229,7 +249,7 @@ def build_track(
     relative = PurePosixPath(
         safe_component(artist),
         safe_component(album),
-        track_filename(surah, options.title_format),
+        track_filename(surah, options.title_format, options.number_separator),
     )
     return TrackSpec(
         key=track_key(reciter.id, moshaf.id, surah.number),
